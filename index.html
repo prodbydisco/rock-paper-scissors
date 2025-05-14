@@ -11,20 +11,26 @@
     <title>Rock, Paper, Scissors</title>
 </head>
 <body>
-    <div class="container">
+    
+    <div class="play-container" onclick="toggleBlur();alert('Good luck! You have 5 rounds to play.');">
+        Press to Start
+    </div>
+
+    <div class="container blur">
         
         <h1>Rock, Paper, Scissors</h1>
         
         <div class="scoreboard">
-            <p id="user-score">Your score: 0</p>
+            <p id="round">Round: 1/5</p>
+            <p id="player-score">Your score: 0</p>
             <p id="computer-score">Computer score: 0</p>
         </div>
 
         <div class="input-container">
-            <input type="text" id="user-input" placeholder="Enter rock, paper, or scissors">
+            <input type="text" id="user-input" autocomplete="off" placeholder="Enter rock, paper, or scissors">
             <div class="buttons">
-                <button id="submit-button">Go!</button>
-                <button id="restart-button">Restart</button>
+                <button id="submit-button" onclick="playGame()">Go!</button>
+                <button id="restart-button" onclick="restart()">Quit :(</button>
             </div>
         </div>
     </div>

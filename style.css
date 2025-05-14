@@ -6,9 +6,11 @@ html {
 body {
     padding: 0;
     margin: 0 auto;
+    padding-top: 40px;
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
+    background-color: #fafafa;
 
     display: flex;
     flex-direction: column;
@@ -25,6 +27,44 @@ body {
     margin-top: 80px;
     width: max-content;
     height: max-content;
+}
+
+.play-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0;
+    
+    width: 600px;
+    height: 400px;
+
+    position: absolute;
+    top: -460px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 10; /* Ensure it sits above .container */
+
+    border: 3px dashed grey;
+    border-radius: 6px;
+    background-color: rgba(220, 220, 220, 0.8);
+
+    font-size: 28px;
+}
+
+.blur {
+    filter: blur(6px);
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.play-container:hover {
+    cursor: pointer;
 }
 
 .footer {
