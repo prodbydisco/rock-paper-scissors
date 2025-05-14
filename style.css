@@ -67,6 +67,10 @@ body {
     border: 1px solid #ccc;
     height: 100%;
     padding: 0 6px;
+    box-sizing: border-box;
+}
+input:focus {
+    outline: none;
 }
 
 .input-container .buttons {
@@ -83,7 +87,6 @@ body {
     border: 1px solid grey;
     margin: 0;
     padding: 2px 8px;
-    border-radius: 2px;
     cursor: pointer;
     height: 100%;
 }
