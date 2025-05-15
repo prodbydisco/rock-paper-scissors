@@ -19,6 +19,25 @@ body {
     font-family: 'JetBrains Mono', monospace;
 }
 
+#rock {
+    background-image: url('img/the-rock.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: -10;
+    
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+
 .container {
     display: flex;
     flex-direction: column;
@@ -29,30 +48,31 @@ body {
     height: max-content;
 }
 
-.play-container {
+#play-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
-    padding: 0;
-    
-    width: 600px;
-    height: 400px;
-
+    /* Remove absolute positioning */
     position: absolute;
-    top: -460px;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: auto;
-    z-index: 10; /* Ensure it sits above .container */
+    margin: 0 auto;
+    margin-top: 80px; /* Match .container's margin-top */
+    width: 600px; /* Match .container's width */
+    height: 400px;
+    z-index: 10;
 
     border: 3px dashed grey;
     border-radius: 6px;
     background-color: rgba(220, 220, 220, 0.8);
 
     font-size: 28px;
+}
+#play-container:hover {
+    cursor: pointer;
 }
 
 .blur {
@@ -62,8 +82,60 @@ body {
 .invisible {
     visibility: hidden;
 }
+.visible {
+    opacity: 1;
+}
 
-.play-container:hover {
+
+#alert-box {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    margin-top: 80px; /* Match .container's margin-top */
+    z-index: 10;
+    box-sizing: border-box;
+    
+    width: 420px;
+    height: 120px;
+    background-color: white;
+    border: 2px solid black;
+    font-size: 14px;
+
+    z-index: 9;
+}
+
+.alert-invisible {
+    display: none !important;
+}
+.alert-visible {
+    display: flex !important;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+#alert-message {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 26px;
+    flex-grow: 1;
+    text-wrap: wrap;
+}
+#close-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    padding: 2px 4px;
+    background-color: rgb(243, 243, 243);
+    border: none;
+    box-sizing: border-box;
+}
+#close-button:hover {
     cursor: pointer;
 }
 
@@ -128,5 +200,6 @@ input:focus {
     margin: 0;
     padding: 2px 8px;
     cursor: pointer;
+    width: 58px;
     height: 100%;
 }
