@@ -10,16 +10,18 @@
 
     <title>Rock, Paper, Scissors</title>
 </head>
-<body onload="">
+<body onload="hideStart();toggleBlur()">
     <div id="rock" class="no-opacity"></div>
     
     <div id="play-container" onclick="toggleBlur();hideStart()">
         Press to Start
     </div>
 
-    <div id="alert-box" class="alert-invisible">
-        <div id="alert-message">You lose! Paper beats rock.</div>
-        <button id="close-button" onclick="hideAlert()">X</button>
+    <div id="alert-container" class="alert-invisible">
+        <div id="alert-box">
+            <div id="alert-message">You lose! Paper beats rock.</div>
+            <button id="close-button" onclick="hideAlert()">X</button>
+        </div>
     </div>
 
     <div class="container blur">
@@ -27,16 +29,18 @@
         <h1>Rock, Paper, Scissors</h1>
         
         <div class="scoreboard">
-            <p id="round">Round: 1/5</p>
             <p id="player-score">Your score: 0</p>
             <p id="computer-score">Computer score: 0</p>
         </div>
 
         <div class="input-container">
-            <input type="text" id="user-input" autocomplete="off" placeholder="Enter rock, paper, or scissors">
             <div class="buttons">
-                <button id="submit-button" onclick="playGame()">Go!</button>
-                <button id="restart-button" onclick="restart()">Restart</button>
+                <div class="choices">
+                    <button id="rock-btn" onclick="playGame(0)">rock</button>
+                    <button id="paper-btn" onclick="playGame(1)">paper</button>
+                    <button id="scissors-btn" onclick="playGame(2)">scissors</button>
+                </div>
+                <button id="restart-button" onclick="restart()">RESTART</button>
             </div>
         </div>
     </div>
