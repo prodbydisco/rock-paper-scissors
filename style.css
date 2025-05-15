@@ -32,8 +32,6 @@ body {
     bottom: 0;
     margin: auto;
     z-index: -10;
-    
-    opacity: 0;
     transition: opacity 0.5s ease;
 }
 
@@ -78,7 +76,9 @@ body {
 .blur {
     filter: blur(6px);
 }
-
+.no-opacity {
+    opacity: 0;
+}
 .invisible {
     visibility: hidden;
 }
@@ -138,6 +138,7 @@ body {
 #close-button:hover {
     cursor: pointer;
 }
+
 
 .footer {
     display: flex;
@@ -200,6 +201,18 @@ input:focus {
     margin: 0;
     padding: 2px 8px;
     cursor: pointer;
-    width: 58px;
+    width: 68px;
     height: 100%;
+    transition: 0.2s;
+}
+
+.input-container button:hover {
+    background-color: #e1e3e4;
+}
+
+
+button:disabled,
+button[disabled],
+input[disabled]{
+  cursor: not-allowed;
 }

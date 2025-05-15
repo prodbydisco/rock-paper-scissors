@@ -5,9 +5,8 @@ let round = 1;
 
 
 
-
-
 function toggleBlur() {
+    console.log('toggled blur');
     const container = document.querySelector('.container');
     container.classList.contains("blur") ? container.classList.remove('blur') :  container.classList.add('blur');
 }
@@ -19,27 +18,31 @@ function hideStart() {
 
 
 function showAlert() {
-    toggleBlur();
-
     const alertBox = document.getElementById('alert-box');
+    console.log('showing alert');
+
+    toggleBlur();
     alertBox.classList.remove('alert-invisible');
     alertBox.classList.add('alert-visible');
 }
 
 function hideAlert() {
-    toggleBlur();
-    
     const alertBox = document.getElementById('alert-box');
+    console.log('hiding alert');
+    
+    toggleBlur();
     alertBox.classList.remove('alert-visible');
     alertBox.classList.add('alert-invisible');
 }
 
 function rock() {
     const rockElem = document.getElementById('rock');
+    rockElem.classList.remove('no-opacity');
     rockElem.classList.add('visible');
     setTimeout(() => {
         rockElem.classList.remove('visible');
-    }, 700);
+        rockElem.classList.add('no-opacity');
+    }, 300);
 }
 
 
@@ -62,89 +65,98 @@ function playGame() {
 
     if (playerChoice === '') {
         alertBox.innerHTML = ("Please enter a valid choice.");
-        showAlert();
     } else if (computerChoice === playerChoice && playerChoice === 'rock') {
         alertBox.innerHTML = ("It's a tie!");
-        showAlert();
         rock();
 
         round++;
     } else if (computerChoice === playerChoice) {
         alertBox.innerHTML = ("It's a tie!");
-        showAlert();
 
         round++;
     } else if (computerChoice === 'rock' && playerChoice === 'scissors') {
         alertBox.innerHTML = ("You lose! Rock beats scissors.");
-        showAlert();
 
         computerScore++;
         round++;
     } else if (computerChoice === 'rock' && playerChoice === 'paper') {
         alertBox.innerHTML = ("You win! Paper beats rock.");
-        showAlert();
         
         playerScore++;
         round++;
     } else if (computerChoice === 'paper' && playerChoice === 'rock') {
         alertBox.innerHTML = ("You lose! Paper beats rock.");
-        showAlert();
         rock();
 
         computerScore++;
         round++;
     } else if (computerChoice === 'paper' && playerChoice === 'scissors') {
         alertBox.innerHTML = ("You win! Scissors beats paper.");
-        showAlert();
 
         playerScore++;
         round++;
     } else if (computerChoice === 'scissors' && playerChoice === 'paper') {
         alertBox.innerHTML = ("You lose! Scissors beats paper.");
-        showAlert();
 
         computerScore++;
         round++;
     }
     else if (computerChoice === 'scissors' && playerChoice === 'rock') {
         alertBox.innerHTML = ("You win! Rock beats scissors.");
-        showAlert();
         rock();
 
         playerScore++;
         round++;
     } else {
         alertBox.innerHTML = ("Invalid choice. Please enter rock, paper, or scissors.");
-        showAlert();
     }
-
-
-    round > 5 ? document.getElementById('round').innerHTML = 'Round: 5/5' : document.getElementById('round').innerHTML = `Round: ${round}/5`;
-    document.getElementById('computer-score').innerHTML = `Computer score: ${computerScore}`;
-    document.getElementById('player-score').innerHTML = `Your score: ${playerScore}`;
-
 
     if (round > 5) {
+        document.getElementById('round').innerHTML = 'Round: 5/5';
+        const alertBox = document.getElementById('alert-message');
+        const submitButton = document.getElementById('submit-button');
+        const inputBox = document.getElementById('user-input');
+        
         if (computerScore > playerScore) {
-            alertBox.innerHTML = ("Game over!\nYou lose! Computer wins.");
-            showAlert();
+            alertBox.textContent = "Game over! You lose! Computer wins.";
         } else if (computerScore < playerScore) {
-            alertBox.innerHTML = ("Game over!\nYou win! Computer loses.");
-            showAlert();
+            alertBox.textContent = "Game over! You win! Computer loses.";
         } else {
-            alertBox.innerHTML = ("Game over!\nIt's a tie!");
-            showAlert();
+            alertBox.textContent = "Game over! It's a tie!";
         }
+        
+        console.log('Showing final alert');
+        showAlert();
+        
+        inputBox.setAttribute('disabled', '');
+        submitButton.setAttribute('disabled', '');
+        
+        // Reset input
+        document.getElementById('user-input').value = '';
+        return;
     }
+
+    showAlert();
+
+    // Update displays for non-final rounds
+    document.getElementById('round').innerHTML = `Round: ${round}/5`;
+    document.getElementById('computer-score').innerHTML = `Computer score: ${computerScore}`;
+    document.getElementById('player-score').innerHTML = `Your score: ${playerScore}`;
 }
 
 function restart() {
+    const submitButton = document.getElementById('submit-button')
+    const inputBox = document.getElementById('user-input');
+
     computerScore = 0;
     playerScore = 0;
     round = 1;
 
     toggleBlur();
     hideStart();
+
+    submitButton.removeAttribute('disabled');
+    inputBox.removeAttribute('disabled');
 
     document.getElementById('computer-score').innerHTML = `Computer score: ${computerScore}`;
     document.getElementById('player-score').innerHTML = `Your score: ${playerScore}`;

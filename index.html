@@ -10,8 +10,8 @@
 
     <title>Rock, Paper, Scissors</title>
 </head>
-<body onload="hideStart();toggleBlur()">
-    <div id="rock"></div>
+<body onload="">
+    <div id="rock" class="no-opacity"></div>
     
     <div id="play-container" onclick="toggleBlur();hideStart()">
         Press to Start
@@ -36,7 +36,7 @@
             <input type="text" id="user-input" autocomplete="off" placeholder="Enter rock, paper, or scissors">
             <div class="buttons">
                 <button id="submit-button" onclick="playGame()">Go!</button>
-                <button id="restart-button" onclick="restart()">Quit :(</button>
+                <button id="restart-button" onclick="restart()">Restart</button>
             </div>
         </div>
     </div>
